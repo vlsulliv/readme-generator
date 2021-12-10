@@ -8,9 +8,7 @@
 
 ## Summary
 
-```
-Readme Generator is a command line application that generates a project readme based on user answers. After `node index.js` is executed, questions about the project will displayed. when all the questions have been answered, a readme will be generated to the output folder. 
-```
+Readme Generator is a command line application that generates a project readme based on user answers. After `node index.js` is executed, questions about the project will displayed. when all the questions have been answered, 
 
 ## Usage
 
