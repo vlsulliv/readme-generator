@@ -1,27 +1,29 @@
 // function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
-  // validate and return license based on selection
-  if (License === `Apache 2.0`) {
-        return `[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`;
-    } else if(License === `MIT`) {
-        return `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`;
-    } else if (License === `Creative Commons`) {
-      return `[![License: CC0-1.0](https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)`;
-    } else if (License === `Zlib`) {
-        return `[![License: Zlib](https://img.shields.io/badge/License-Zlib-lightgrey.svg)](https://opensource.org/licenses/Zlib)`;
-    } else if (License === 'GNU GPL v3') {
-        return `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)`;
-      } else {
-      return `None`
-  }
+  if (license === `Apache 2.0`) {
+        return `![License](https://opensource.org/licenses/Apache-2.0)`;
+    } else if(license === `MIT`) {
+        return `![License: MIT](https://opensource.org/licenses/MIT)`;
+    } else if (license === `Creative Commons`) {
+      return `![License: CC0-1.0](http://creativecommons.org/publicdomain/zero/1.0/)`;
+    } else if (license === `Zlib`) {
+        return `![License: Zlib](https://opensource.org/licenses/Zlib)`;
+    } else if (license === 'GNU GPL v3') {
+        return `![License: GPL v3](https://www.gnu.org/licenses/gpl-3.0)`;
+    } else if (license === 'GitHub') {
+        return `![License: Github](https://img.shields.io/github/languages/top/${userResponses.name}/${userResponses.title}?style=flat&logo=appveyor`;
+    } else {
+      return ` `;
+    }
+    return '';
 }
 
-// Tfunction that returns the license link
+// function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
-  if (License !== None) {
-    return `* [License](#license)` 
+  if (license !== None) {
+    return `[License](#license)`;
   }
   return '';
 }
@@ -29,75 +31,57 @@ function renderLicenseLink(license) {
 // function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
-  if(License !== `None`) {
-    return `## License
-  
-  ${data.title} is licensed under a ${license} license.`;
+
+  if(license !== null && license !== '') {
+    return `## License <br> ${license}`;
   }
   return '';
 }
 
 // function to generate markdown for README
-function generateMarkdown(data) {
-  return `# ${data.title}
-${renderLicenseBadge(data.License)};
+function generateMarkdown(userResponses) {
+  return `# ${userResponses.title}
+${renderLicenseBadge(userResponses.License)};
 
 ##  Description
 
-${data.Description} 
+${userResponses.Description} 
 
-### Table of Contents
+Table of Contents
+* [Title](#Title)<br>
+* [Description](#description)<br>
+* [Usage](#usage)<br>
+* [Technologies](#tech)<br>
+* [Installation](#Installation)<br>
+* [Usage](#Usage)<br>
+* [Images](#images)<br>
+* [License](#license)<br>   
 
-* [Title](#Title)    
-* [ScreenShow](#ScreenShow)    
-* [Description](#Description)    
-* [Motivations](#Motivations)    
-* [Frameworks](#Frameworks)    
-* [Installation](#Installation)    
-* [Usage](#Usage)    
-* [Contributers](#Contributers)    
-* [Testing](#Testing)    
-* [License](#License)    
-* [Questions](#Questions)
+## Technologies<br>
 
-## ScreenShot
+${userResponses.tech}<br>   
 
-${data.ScreenShot}     
+## Installation<br>
 
-## Motivations
+${userResponses.Installation}<br>   
 
-${data.Motivations}  
+## Usage<br>
 
-## Frameworks
+${userResponses.Usage}<br>    
 
-${data.Frameworks}   
+## Contributors<br>
 
-## Installation
+${userResponses.Contributers}<br>    
 
-${data.Installation}   
+## Testing<br>
 
-## Usage
+${userResponses.Testing}<br>
 
-${data.Usage}    
-${renderLicenseLink(license)};
-
-## Contributors
-
-${data.Contributers}    
-
-## Testing
-
-${data.Testing}
-
-
-## license
-
-Project licenced under the ${license} license.
-${data.License}    
+## license<br>
 
 For any questions or suggestions about this project, contact me <br>
- ${data.Questions}.`;  
+ ${userResponses.Questions}`;  
 
 }
 
-module.exports = {generateMarkdown};
+module.exports = generateMarkdown;
